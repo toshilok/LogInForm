@@ -28,32 +28,32 @@ export default  class TodoApp extends React.Component{
      return (
          <div className="container">
          <Well style={wellStyle}>
-         <legend>Welcome to Gemini Tech</legend>
-         <form>
-            <FormGroup>
-                    <ControlLabel>Enter Username </ControlLabel>
-                <FormControl
-                    type='text'
-                    placeholder='Enter Your Username'/>
-            <FormControl.Feedback/>
-                <HelpBlock> </HelpBlock>
-            </FormGroup>
-            <FormGroup>
-                    <ControlLabel>Enter Password </ControlLabel>
-                <FormControl
-                    type='password'
-                    placeholder='Enter Your Password'/>
-            <FormControl.Feedback/>
-                <HelpBlock> </HelpBlock>
-            </FormGroup>
-            <div className="button">
-                <ButtonGroup>
-                    <Button  bsStyle="default" type="submit">Login</Button>
-                    <Button  bsStyle="primary" type="button" onClick={this.goToRegister.bind(this)}>
-                    Register</Button>
-                </ButtonGroup>    
-            </div>
-         </form>
+            <legend>Welcome to Gemini Tech</legend>
+            <form>
+                <FormGroup>
+                        <ControlLabel>Enter Username </ControlLabel>
+                    <FormControl
+                        type='text'
+                        placeholder='Enter Your Username'/>
+                <FormControl.Feedback/>
+                    <HelpBlock> </HelpBlock>
+                </FormGroup>
+                <FormGroup>
+                        <ControlLabel>Enter Password </ControlLabel>
+                    <FormControl
+                        type='password'
+                        placeholder='Enter Your Password'/>
+                <FormControl.Feedback/>
+                    <HelpBlock> </HelpBlock>
+                </FormGroup>
+                <div className="button">
+                    <ButtonGroup>
+                        <Button  bsStyle="default" type="submit">Login</Button>
+                        <Button  bsStyle="primary" type="button" onClick={this.goToRegister.bind(this)}>
+                        Register</Button>
+                    </ButtonGroup>    
+                </div>
+            </form>
          </Well>
          </div>
      );
