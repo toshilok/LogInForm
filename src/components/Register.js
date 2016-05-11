@@ -18,6 +18,7 @@ class Register extends React.Component{
     constructor(props){
      super(props);
      this.state={
+     movie:{}
      };
      
      this.validatorTypes = strategy.createSchema (
@@ -29,27 +30,43 @@ class Register extends React.Component{
                     rwpassWord: 'same:PassWord',
                     gender: 'required',
                     location: 'required',
-                    comment: 'required'
+                    comment: 'required',
+                    movie:'required|movierule'
+                    
             },
             {
                     "required": "The field  :attribute is required"
             },
-            (validation)=> {
-                validation.setAttributeNames({
+            (validator)=> {
+                validator.setAttributeNames({
                         firstName: 'First Name',
                         lastName: 'Last Name',
                         userName: 'User Name',
                         PassWord: 'Password',
                         rwpassWord: 'Re-write Password',
                         gender: 'Gender',
+                         movie:'required|movierule',
                         location: 'Location',
                         comment: 'Comment'
-                })
-            }  
-         
+                });
+                
+                validator.constructor.registerAsync('movierule',
+                function(movie, attribute, req, passes){
+                var counter=0
+                for(var key in movie){
+                        if(movie[key])
+                                counter++;
+                
+                       }  
+                        if(counter==0)
+                                passes(false,'Please Select One');
+                          else 
+                          passes();
+                });
+              }
      );
      
- }
+             }
  
  getValidatorData = ()=> {
         return this.state
@@ -105,8 +122,8 @@ getErrorText=(field)=>{
      render(){
      
          const wellStyle={
-            width: 700,
-            height: 'auto',
+            width: 500,
+            height: 300,
             marginLeft: 'auto',
             marginRight: 'auto',
             marginTop: 50
@@ -227,42 +244,56 @@ getErrorText=(field)=>{
         }>Female</Radio>
         
          <HelpBlock>{this.getErrorText('gender')}</HelpBlock>
-        <br/><br/>
+        
       </FormGroup>
-       <ControlLabel>Favorite Food</ControlLabel><br/>
-      <Checkbox  readOnly inline
-      checked={this.state.food1 === 'qwik-qwik'}
+             <FormGroup validationState={this.getClasses('movie')}>
+                    <ControlLabel>Favorite Movie</ControlLabel><br/>
+
+      <Checkbox   inline
+      checked={this.state.movie['Lihis'] === 1 }
       onClick={
          ()=>{
-            if(this.state.food1 === 'qwik-qwik')
-            this.setState({'food1': ''})
+         var movie= this.state.movie;
+            if(movie['Lihis']===1)
+            movie['Lihis'] = undefined;
             else
-             this.setState({'food1': 'qwik-qwik'})
-         }
-      }
-      >Qwik-Qwik</Checkbox>
-      <Checkbox  readOnly inline
-        checked={this.state.food2 === 'tempura'}
+             movie['Lihis'] = 1;
+             this.setState({
+             movie:movie
+         });
+      }}
+      >Lihis</Checkbox>
+      <Checkbox   inline
+      checked={this.state.movie['regidon'] === 1 }
       onClick={
          ()=>{
-             if(this.state.food2 === 'tempura')
-             this.setState({'food2': ''})
-             else
-             this.setState({'food2': 'tempura'})
-         }
-      }>Tempura</Checkbox>
-      <Checkbox  readOnly inline
-        checked={this.state.food3 === 'isaw'}
+         var movie= this.state.movie;
+            if(movie['regidon']===1)
+            movie['regidon']= undefined;
+            else
+             movie['regidon'] = 1;
+             this.setState({
+             movie:movie
+         })
+      }}
+      >regidon</Checkbox>
+      <Checkbox   inline
+      checked={this.state.movie['Superman'] === 1 }
       onClick={
          ()=>{
-             if(this.state.food3 === 'isaw')
-             this.setState({'food3': ''})
-             else
-             this.setState({'food3': 'isaw'})
-         }
-      }>Isaw</Checkbox>
-      
-      
+         var movie= this.state.movie;
+            if(movie['Superman']===1)
+            movie['Superman']= undefined;
+            else
+             movie['Superman'] = 1;
+             this.setState({
+             movie:movie
+         });
+      }}
+      >Superman</Checkbox>
+              <HelpBlock>{this.getErrorText('movie')}</HelpBlock>
+
+      </FormGroup>
       <FormGroup controlId="formControlsSelect" validationState={this.getClasses('location')}>
         <ControlLabel>Location in Bohol</ControlLabel>
         <FormControl componentClass="select" placeholder="select" name="location"
