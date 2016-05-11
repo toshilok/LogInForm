@@ -45,7 +45,6 @@ class Register extends React.Component{
                         PassWord: 'Password',
                         rwpassWord: 'Re-write Password',
                         gender: 'Gender',
-                         movie:'required|movierule',
                         location: 'Location',
                         comment: 'Comment'
                 });
